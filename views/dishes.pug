@@ -1,0 +1,121 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  link(rel='stylesheet', href='./../stylesheets/dishes.css', type='text/css')
+  link(rel='stylesheet', href='./../stylesheets/alert-window.css', type='text/css')
+ 
+  title Dishes
+body
+ 
+  div.header
+    a(href="/home") Menu
+    h1 Dishes management
+  div.container
+     div.container__new-dish
+       h1 Add new dish
+       div.container__form
+            form(action="/dishes/uploads" method="POST" enctype="multipart/form-data" name="fileinfo")
+            
+              label.container__form__label(for='category') Category
+              select(name="category")
+                each c in category 
+                  option.container__form__select(value=c._id, name='cat_id') #{c.title}
+
+
+              label.container__form__label(for='cuisine') Cuisine
+              select(name="cuisine")
+                each c in cuisines 
+                  option.container__form__select(value=c._id, name='cui_id') #{c.title}
+               
+               
+              label.container__form__label(for='title-general') Title
+              input#title-general.container__form__input(type='text', name='title', placeholder='Enter title', required)
+              
+              label.container__form__label(for='source-general') Alternative name 
+              input#alternative-general.container__form__input(type='text', name='alternative[]', placeholder='Enter alternative name')
+              div.add__block Additional alternative name
+
+    
+
+              label.container__form__label(for='source-general') Source
+              input#source-general.container__form__input(type='text', name='source', placeholder='Enter source', required)
+
+              label.container__form__label(for='description-general') Description
+              textarea#description-general.container__form__textarea(name='description', cols="30", rows="10", required)
+
+              input(type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple required)
+              label.label-input__file(for="file")
+                span Choose a photo (multiplay selection is support) 
+              p.error_image This is not an allowed file type!
+              button#error_button.container__form__button(type = "submit") Add 
+
+
+     div.container__edit-dish
+       h1 Edit dish
+       div#edit-block.container__form
+            form(action="/dishes/edit" method="POST" enctype="multipart/form-data")
+            
+              label.container__form__label(for='category_edit') Category
+              select#category(name="category_edit")
+                each c in category 
+                  option.container__form__select(value=c._id, name='cat_id_edit') #{c.title}
+
+
+              label.container__form__label(for='category_edit') Cuisine
+              select#cuisine(name="cuisine_edit")
+                each c in cuisines 
+                  option.container__form__select(value=c._id, name='cui_id_edit') #{c.title}
+               
+               
+              label.container__form__label(for='title') Title
+              input#title.container__form__input(type='text', name='title_edit', placeholder='Enter title', required)
+              
+              label.container__form__label(for='alternative') Alternative name (Values ​​through "^")
+              input#alternative.container__form__input(type='text', name='alternative_edit[]', placeholder='Enter alternative name')
+              div.add__block-edit Additional alternative name
+
+    
+
+              label.container__form__label(for='source') Source
+              input#source.container__form__input(type='text', name='source_edit', placeholder='Enter source', required)
+
+              label.container__form__label(for='description') Description
+              textarea#description.container__form__textarea(name='description_edit', cols="30", rows="10", required)
+
+              input(type="file" name="filenew" id="filenew" class="inputfile_edit" data-multiple-caption="{count} files selected" multiple required)
+              label.label-input__file(for="filenew")
+                span Choose a photo (multiplay selection is support) 
+              p.error_image This is not an allowed file type!
+            
+             
+              button#error_button-edit.container__form__button-edit(type = "submit") Save
+              a.container__form__button_close(href='/dishes') Cancel
+     div.container__list
+        ul.container__list__ul
+          each d in dishes
+            
+            a.button_edit(href='#', data-id=d._id, data-title=d.title, data-alternative=d.alternative, data-source=d.source, data-description=d.description, data-category=d.category_id, data-cuisine=d.cuisine_id, data-image=d.photo_id)
+              div.container__list__li
+                div
+                 
+                  li= d.title
+                    p 
+                      span #{d.description}
+                   
+           
+               
+                div
+                  a.button_edit.container__list__button-edit(href='#', data-id=d._id, data-title=d.title, data-alternative=d.alternative, data-source=d.source, data-description=d.description, data-category=d.category_id, data-cuisine=d.cuisine_id, data-image=d.photo_id) Edit
+                  a.container__list__delete(href='#', data-id=d._id) Delete
+   
+       
+       
+     
+   
+                 
+            
+script(src='https://code.jquery.com/jquery-3.4.1.min.js')
+script(src ='/javascripts/alert-window.js')         
+script(src ='/javascripts/dishes.js')

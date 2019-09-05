@@ -1,0 +1,73 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  link(rel='stylesheet', href='./../stylesheets/alert-window.css', type='text/css')
+  link(rel='stylesheet', href='./../stylesheets/cuisines.css', type='text/css')
+ 
+  title Cuisine
+body
+ 
+  div.header
+    a(href="/home") Menu
+    h1 Cuisines management
+  div.container
+     div.container__new-cuisine
+       h1 Add new cuisine
+       div.container__form
+        form(action="/cuisines/uploads" method="POST" enctype="multipart/form-data" name="fileinfo" id="fileinfo")
+          input(type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected")
+          label.label-input__file(for="file")
+            span Choose a icon ... 
+          p.error_image This is not an allowed file type!
+          
+          label.container__form__label(for='cuisine') Cuisine
+          input#cuisine.container__form__input(type='text', name='title', placeholder='Title', required)
+          button#error_button.container__form__button(type = "submit") Add 
+
+     div.container__edit-cuisine
+       h1 Edit category
+       div#edit-block.container__form
+            form(action="/categories/edit" method="POST" enctype="multipart/form-data" id="edit_form")
+               
+               input(type="file" name="files" id="file-edit" class="inputfile_edit" data-multiple-caption="{count} files selected")
+               label.label-input__file(for="file-edit")
+                span Choose a icon ... 
+               p.error_image This is not an allowed file type!
+            
+               label.container__form__label(for='title') Cuisine
+               input#category_edit.container__form__input(type='text', name='title_edit', value='', required)           
+               button#error_button-edit.container__form__button(type = "submit") Save
+               a.container__form__button_close(href='/cuisines') Cancel
+   
+       
+       
+     div.container__list
+        ul.container__list__ul
+          each cuis in cuisines
+              li.container__list__li
+                div.container__list__li_title
+                   img(src="/photos/"+cuis.icon_id+"/original.png", width="20px" height="auto" alt="cuisine") 
+                   p=  cuis.title
+                
+               
+                div
+                  a.container__list__button-edit(href='#', data-id=cuis._id, value=cuis.title) Edit
+                  a.container__list__delete(href='#', data-id=cuis._id) Delete
+
+  div.edit-block
+    
+       form(method='POST')
+         
+         label.edit-block__label(for='cuisine') Edit cuisine
+         input#cuisine_edit.edit-block__input(type='text', name='title_edit' value="undefined") 
+         button.edit-block__button Edit cuisine
+   
+       a.edit-block__button__close(href='/cuisines') Cancel
+   
+                 
+            
+script(src='https://code.jquery.com/jquery-3.4.1.min.js')
+script(src ='/javascripts/alert-window.js')           
+script(src ='/javascripts/cuisines.js')

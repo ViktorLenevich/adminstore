@@ -1,0 +1,24 @@
+.container{
+    height: 90vh;
+    font: 14px  Arial, "Lucida Grande", Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container a{
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 2px;
+    color: #ffffff;
+    background-color: #689f38;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 10px;
+    padding: 10px 50px;
+    font-size: 18px;
+    border: 0;
+}
+.container a:hover{
+    background-color: #558b2f;
+    transition: 1s;
+}
