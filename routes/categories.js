@@ -133,7 +133,13 @@ router.post('/edit/:id', Guard, upload.single("files"), async(req, res) => {
   let category = {};
   category.title = req.body.title_edit;
   category.title_lc = req.body.title_edit.toLowerCase();
+ 
+ 
   category.icon_id = req.file.destination.replace('photos/', '');
+    
+  
+  
+ 
   category.version = 1;
  
 

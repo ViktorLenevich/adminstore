@@ -201,11 +201,7 @@ body{
     margin-left: 15px;
 }
 
-.container__list__li:hover{
-    cursor: pointer;
-    background-color: #689f38;
-    transition: 0.5s;
-}
+
 .container__list__button-edit{
     opacity: 0.3;
     margin-left: 20px;

@@ -129,6 +129,12 @@ $(document).ready(function () {
 
     });
 
+ 
+
+
+
+  
+
     //Method for update dish (attr-id)
 
     $('.container__list__button-edit').on('click', function (e) {

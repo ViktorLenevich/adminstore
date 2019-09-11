@@ -1,6 +1,8 @@
 /*Smoke pure*/
 .smoke-base {
-    position         : absolute;
+    position: fixed;
+   
+    /* position         : absolute; */
     left             : 0%;
     top              : 0%;
     width            : 100%;
@@ -11,7 +13,9 @@
    }
    
    .smoke-dialog_wrapper {
+   
     position       : relative;
+
     vertical-align : middle;
     display        : table-cell;
    }

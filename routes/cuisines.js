@@ -6,6 +6,7 @@ const multer = require('multer');
 const mkdirp = require('mkdirp');
 const config = require('../config');
 var Cuisine = require('../models/cuisine.model');
+var Dish = require('./../models/dish.model');
 var adminData = require('../models/login.model');
 
 
@@ -89,6 +90,11 @@ router.get('/:id', Guard, async(req, res) => {
         errorHandler(res, e);
     }
 });
+
+
+
+
+
 
 
 

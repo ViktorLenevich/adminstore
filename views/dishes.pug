@@ -55,7 +55,7 @@ body
      div.container__edit-dish
        h1 Edit dish
        div#edit-block.container__form
-            form(action="/dishes/edit" method="POST" enctype="multipart/form-data")
+            form(action="/dishes/edit" method="POST" enctype="multipart/form-data" id="form__edit")
             
               label.container__form__label(for='category_edit') Category
               select#category(name="category_edit")
@@ -84,38 +84,71 @@ body
               label.container__form__label(for='description') Description
               textarea#description.container__form__textarea(name='description_edit', cols="30", rows="10", required)
 
-              input(type="file" name="filenew" id="filenew" class="inputfile_edit" data-multiple-caption="{count} files selected" multiple required)
+              input(type="file" name="filenew" id="filenew" class="inputfile_edit" data-multiple-caption="{count} files selected" multiple)
               label.label-input__file(for="filenew")
                 span Choose a photo (multiplay selection is support) 
               p.error_image This is not an allowed file type!
-            
+              div.block__images
+              
+                    
              
-              button#error_button-edit.container__form__button-edit(type = "submit") Save
+              button.container__form__button-edit(type = "submit") Save
               a.container__form__button_close(href='/dishes') Cancel
-     div.container__list
+
+     div.container__information
+      div.container__information__filter
+        form(action="/dishes" method="GET")
+          ul
+            li
+                label.filter-label(for='catfilter') Categories
+                select(name="catfilter")
+                  each c in category 
+                    option(value=c._id, name='cat__filter') #{c.title}
+                    option(value=selectcat, name='cat__filter', selected disabled hidden) #{selectcat}
+                
+            li
+                label.filter-label(for='cuifilter') Cuisines
+                select(name="cuifilter")
+                  each c in cuisines 
+                   option(value=c._id, name='cui__filter') #{c.title}
+                   option(value=selectcui, name='cui__filter', selected disabled hidden) #{selectcui}
+
+            li
+              a.filter__any(href="/dishes") Reset
+
+            li
+              button.filter__submit(type = "submit") Apply 
+
+      div.container__list
+    
+    
         ul.container__list__ul
+        
           each d in dishes
             
-            a.button_edit(href='#', data-id=d._id, data-title=d.title, data-alternative=d.alternative, data-source=d.source, data-description=d.description, data-category=d.category_id, data-cuisine=d.cuisine_id, data-image=d.photo_id)
               div.container__list__li
-                div
+             
+                  div
                  
-                  li= d.title
-                    p 
-                      span #{d.description}
+                    li= d.title
+                      p 
+                        span #{d.description}
                    
            
                
-                div
-                  a.button_edit.container__list__button-edit(href='#', data-id=d._id, data-title=d.title, data-alternative=d.alternative, data-source=d.source, data-description=d.description, data-category=d.category_id, data-cuisine=d.cuisine_id, data-image=d.photo_id) Edit
-                  a.container__list__delete(href='#', data-id=d._id) Delete
+                  div
+                    a.button_edit.container__list__button-edit(href='#', data-id=d._id, data-title=d.title, data-alternative=d.alternative, data-source=d.source, data-description=d.description, data-category=d.category_id, data-cuisine=d.cuisine_id, data-image=d.photo_id) Edit
+                    a.container__list__delete(href='#', data-id=d._id) Delete
+     
+        
+         
    
        
        
-     
+      
    
                  
             
 script(src='https://code.jquery.com/jquery-3.4.1.min.js')
-script(src ='/javascripts/alert-window.js')         
+script(src ='/javascripts/alert-window.js') 
 script(src ='/javascripts/dishes.js')

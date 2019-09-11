@@ -6,7 +6,7 @@ head
   link(rel='stylesheet', href='./../stylesheets/alert-window.css', type='text/css')
   link(rel='stylesheet', href='./../stylesheets/cuisines.css', type='text/css')
  
-  title Cuisine
+  title Cuisines
 body
  
   div.header
@@ -47,6 +47,7 @@ body
         ul.container__list__ul
           each cuis in cuisines
               li.container__list__li
+              
                 div.container__list__li_title
                    img(src="/photos/"+cuis.icon_id+"/original.png", width="20px" height="auto" alt="cuisine") 
                    p=  cuis.title
